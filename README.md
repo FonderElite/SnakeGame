@@ -1,5 +1,5 @@
 # Snake Game
-<img src="https://thumbs.dreamstime.com/z/vector-pixel-art-snake-coil-isolated-cartoon-138531096.jpg">
+<img src="https://i.pinimg.com/736x/93/b6/d5/93b6d5fada6558292a0af9b4153969fc--snake-reptile-pixel-art.jpg">
 
 Made using vanilla javascript.
 
