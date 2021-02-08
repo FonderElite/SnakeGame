@@ -1,4 +1,5 @@
 # Snake Game
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Creative-Tail-Animal-snake.svg/1024px-Creative-Tail-Animal-snake.svg.png">
 
 Made using vanilla javascript.
 
