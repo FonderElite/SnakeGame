@@ -17,13 +17,15 @@
             background: #181818;
             color: white;
         }
-      
+      #game-status{
+font-size: 2.5vh;
+}
     </style>
   </head>
   <body>
     <div class="game-box"><canvas id="canvas" width="400" height="400"></canvas></div>
     <div class="game-info">
-        <h2>Snake Game</h2>
+        <h1>Snake Game</h2>
         <p id="game-status"></p>
         <p id="game-score"></p>
     </div>
@@ -33,8 +35,8 @@
       // render X times per second
       let x = 8;
       
-      const CANVAS_BORDER_COLOUR = 'grey';
-      const CANVAS_BACKGROUND_COLOUR = " 	#202020";
+      const CANVAS_BORDER_COLOUR = 'white';
+      const CANVAS_BACKGROUND_COLOUR = " #202020";
       const SNAKE_COLOUR = 'lightgreen';
       const SNAKE_BORDER_COLOUR = 'white';
 
@@ -52,7 +54,7 @@
       function startGame(x) {
           // setting gameActive flag to true
           gameActive = true;
-          document.getElementById("game-status").innerHTML = "<small>Game Started</small>";
+          document.getElementById("game-status").innerHTML = "<h3>Game Started</h3>";
           document.getElementById("game-score").innerHTML = "";
           return setInterval(draw, 1000 / x);
       }
