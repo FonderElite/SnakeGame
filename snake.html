@@ -2,22 +2,28 @@
 <html>
   <head>
   	<title>Snake Game</title>
-    <link href="https://fonts.googleapis.com/css?family=Antic+Slab" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <script src="index.js"></script>
-
   </head>
 
   <body>
 
+    <div id="score">0</div>
     <canvas id="snakeboard" width="400" height="400"></canvas>
 
     <style>
- 
+      #snakeboard {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      #score {
+        text-align: center;
+        font-size: 140px;
+      }
     </style>
   </body>
 
-  <script>
-   
-  </script>
+ 
 </html>
