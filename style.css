@@ -1,5 +1,13 @@
- #snakeboard {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+
+        .game-box {
+            text-align:center;   
+        }
+        .game-info {
+            text-align:center; 
+            font-family:arial;
+            line-height:24px;
+        }
+      body{
+        background: #181818;
+        color: white;
+      }
