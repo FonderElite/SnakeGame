@@ -29,9 +29,9 @@
     </div>
 
     <script>
-      var canvas, ctx, gameControl, gameActive;
+      let canvas, ctx, gameControl, gameActive;
       // render X times per second
-      var x = 8;
+      let x = 8;
       
       const CANVAS_BORDER_COLOUR = 'grey';
       const CANVAS_BACKGROUND_COLOUR = " 	#202020";
@@ -73,17 +73,17 @@
       }
 
       // game world
-      var gridSize = (tileSize = 20); // 20 x 20 = 400
-      var nextX = (nextY = 0);
+      let gridSize = (tileSize = 20); // 20 x 20 = 400
+      let nextX = (nextY = 0);
 
       // snake
-      var defaultTailSize = 3;
-      var tailSize = defaultTailSize;
-      var snakeTrail = [];
-      var snakeX = (snakeY = 10);
+      let defaultTailSize = 3;
+      let tailSize = defaultTailSize;
+      let snakeTrail = [];
+      let snakeX = (snakeY = 10);
 
       // apple
-      var appleX = (appleY = 15);
+      let appleX = (appleY = 15);
 
       // draw
       function draw() {
@@ -127,7 +127,7 @@
         // paint snake
         ctx.fillStyle = SNAKE_COLOUR;
         ctx.strokestyle = SNAKE_BORDER_COLOUR;
-        for (var i = 0; i < snakeTrail.length; i++) {
+        for (let i = 0; i < snakeTrail.length; i++) {
           ctx.fillRect(
             snakeTrail[i].x * tileSize,
             snakeTrail[i].y * tileSize,
