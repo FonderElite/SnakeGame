@@ -2,13 +2,10 @@
       let canvas, ctx, gameControl, gameActive;
       // render X times per second
       let x = 8;
-      
-      const CANVAS_BORDER_COLOUR = 'black';
-      const CANVAS_BACKGROUND_COLOUR = "white";
+      const CANVAS_BORDER_COLOUR = 'grey';
+      const CANVAS_BACKGROUND_COLOUR = " 	#202020";
       const SNAKE_COLOUR = 'lightgreen';
-      const SNAKE_BORDER_COLOUR = 'darkgreen';
-
-
+      const SNAKE_BORDER_COLOUR = 'white';
       window.onload = function() {
         canvas = document.getElementById("canvas");
         ctx = canvas.getContext("2d");
