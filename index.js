@@ -1,4 +1,4 @@
-<script>
+
       let canvas, ctx, gameControl, gameActive;
       // render X times per second
       let x = 8;
