@@ -20,6 +20,11 @@
       #game-status{
 font-size: 2.5vh;
 }
+#game-over{
+text-shadow: 0px 1px 1px white;
+color: #B80F0A;
+font-size: 3.5vh;
+}
     </style>
   </head>
   <body>
@@ -70,7 +75,7 @@ font-size: 2.5vh;
           // setting gameActive flag to false
           clearInterval(gameControl);
           gameActive = false;
-          document.getElementById("game-status").innerHTML = "<small>Game Over</small>";
+          document.getElementById("game-status").innerHTML = "<h3 id='game-over'>Game Over!</h3>";
           document.getElementById("game-score").innerHTML = "<h1>Score: " + x + "</h1>";
       }
 
