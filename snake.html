@@ -1,29 +1,28 @@
 <!DOCTYPE html>
-<html>
   <head>
-  	<title>Snake Game</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="index.js"></script>
-  </head>
-
-  <body>
-
-    <div id="score">0</div>
-    <canvas id="snakeboard" width="400" height="400"></canvas>
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Snake Game using HTML and Javascript - Studytonight</title>
     <style>
-      #snakeboard {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-      #score {
-        text-align: center;
-        font-size: 140px;
-      }
+        .game-box {
+            text-align:center;   
+        }
+        .game-info {
+            text-align:center; 
+            font-family:arial;
+            line-height:24px;
+        }
     </style>
-  </body>
+  </head>
+  <body>
+    <div class="game-box"><canvas id="canvas" width="400" height="400"></canvas></div>
+    <div class="game-info">
+        <h2>Snake Game</h2>
+        <p id="game-status"></p>
+        <p id="game-score"></p>
+    </div>
 
- 
+    
+  </body>
 </html>
