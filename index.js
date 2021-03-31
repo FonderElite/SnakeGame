@@ -1,58 +1,159 @@
- const board_border = 'black';
-    const board_background = "white";
-    const snake_col = 'lightblue';
-    const snake_border = 'darkblue';
-    
-    let snake = [
-      {x: 200, y: 200},
-      {x: 190, y: 200},
-      {x: 180, y: 200},
-      {x: 170, y: 200},
-      {x: 160, y: 200}
-    ]
-    
-    // Get the canvas element
-    const snakeboard = document.getElementById("snakeboard");
-    // Return a two dimensional drawing context
-    const snakeboard_ctx = snakeboard.getContext("2d");
-    // Start game
-    main();
-    
-    // main function called repeatedly to keep the game running
-    function main() {
-        clearCanvas();
-        drawSnake();
-    }
-    
-    // draw a border around the canvas
-    function clearCanvas() {
-      //  Select the colour to fill the drawing
-      snakeboard_ctx.fillStyle = board_background;
-      //  Select the colour for the border of the canvas
-      snakeboard_ctx.strokestyle = board_border;
-      // Draw a "filled" rectangle to cover the entire canvas
-      snakeboard_ctx.fillRect(0, 0, snakeboard.width, snakeboard.height);
-      // Draw a "border" around the entire canvas
-      snakeboard_ctx.strokeRect(0, 0, snakeboard.width, snakeboard.height);
-    }
-    
-    // Draw the snake on the canvas
-    function drawSnake() {
-      // Draw each part
-      snake.forEach(drawSnakePart)
-    }
-    
-    // Draw one snake part
-    function drawSnakePart(snakePart) {
+<script>
+      let canvas, ctx, gameControl, gameActive;
+      // render X times per second
+      let x = 8;
+      
+      const CANVAS_BORDER_COLOUR = 'black';
+      const CANVAS_BACKGROUND_COLOUR = "white";
+      const SNAKE_COLOUR = 'lightgreen';
+      const SNAKE_BORDER_COLOUR = 'darkgreen';
 
-      // Set the colour of the snake part
-      snakeboard_ctx.fillStyle = snake_col;
-      // Set the border colour of the snake part
-      snakeboard_ctx.strokestyle = snake_border;
-      // Draw a "filled" rectangle to represent the snake part at the coordinates
-      // the part is located
-      snakeboard_ctx.fillRect(snakePart.x, snakePart.y, 10, 10);
-      // Draw a border around the snake part
-      snakeboard_ctx.strokeRect(snakePart.x, snakePart.y, 10, 10);
-    }
-    
+
+      window.onload = function() {
+        canvas = document.getElementById("canvas");
+        ctx = canvas.getContext("2d");
+
+        document.addEventListener("keydown", keyDownEvent);
+
+        gameControl = startGame(x);
+      };
+      
+      /* function to start the game */
+      function startGame(x) {
+          // setting gameActive flag to true
+          gameActive = true;
+          document.getElementById("game-status").innerHTML = "<small>Game Started</small>";
+          document.getElementById("game-score").innerHTML = "";
+          return setInterval(draw, 1000 / x);
+      }
+      
+      function pauseGame() {
+          // setting gameActive flag to false
+          clearInterval(gameControl);
+          gameActive = false;
+          document.getElementById("game-status").innerHTML = "<small>Game Paused</small>";
+      }
+      
+      function endGame(x) {
+          // setting gameActive flag to false
+          clearInterval(gameControl);
+          gameActive = false;
+          document.getElementById("game-status").innerHTML = "<small>Game Over</small>";
+          document.getElementById("game-score").innerHTML = "<h1>Score: " + x + "</h1>";
+      }
+
+      // game world
+      let gridSize = (tileSize = 20); // 20 x 20 = 400
+      let nextX = (nextY = 0);
+
+      // snake
+      lletdefaultTailSize = 3;
+      let tailSize = defaultTailSize;
+      let snakeTrail = [];
+      let snakeX = (snakeY = 10);
+
+      // apple
+      let appleX = (appleY = 15);
+
+      // draw
+      function draw() {
+        // move snake in next pos
+        snakeX += nextX;
+        snakeY += nextY;
+
+        // snake over game world?
+        if (snakeX < 0) {
+          snakeX = gridSize - 1;
+        }
+        if (snakeX > gridSize - 1) {
+          snakeX = 0;
+        }
+
+        if (snakeY < 0) {
+          snakeY = gridSize - 1;
+        }
+        if (snakeY > gridSize - 1) {
+          snakeY = 0;
+        }
+
+        //snake bite apple?
+        if (snakeX == appleX && snakeY == appleY) {
+          tailSize++;
+
+          appleX = Math.floor(Math.random() * gridSize);
+          appleY = Math.floor(Math.random() * gridSize);
+        }
+
+        //  Select the colour to fill the canvas
+      ctx.fillStyle = CANVAS_BACKGROUND_COLOUR;
+      //  Select the colour for the border of the canvas
+      ctx.strokestyle = CANVAS_BORDER_COLOUR;
+
+      // Draw a "filled" rectangle to cover the entire canvas
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      // Draw a "border" around the entire canvas
+      ctx.strokeRect(0, 0, canvas.width, canvas.height);
+
+        // paint snake
+        ctx.fillStyle = SNAKE_COLOUR;
+        ctx.strokestyle = SNAKE_BORDER_COLOUR;
+        for (let i = 0; i < snakeTrail.length; i++) {
+          ctx.fillRect(
+            snakeTrail[i].x * tileSize,
+            snakeTrail[i].y * tileSize,
+            tileSize,
+            tileSize
+          );
+          
+          ctx.strokeRect(snakeTrail[i].x * tileSize , snakeTrail[i].y* tileSize, tileSize, tileSize);
+
+          //snake bites it's tail?
+          if (snakeTrail[i].x == snakeX && snakeTrail[i].y == snakeY) {
+            if(tailSize > 3) {
+                endGame(tailSize);
+            }
+            tailSize = defaultTailSize;  
+          }
+        }
+
+        // paint apple
+        ctx.fillStyle = "red";
+        ctx.fillRect(appleX * tileSize, appleY * tileSize, tileSize, tileSize);
+
+        //set snake trail
+        snakeTrail.push({ x: snakeX, y: snakeY });
+        while (snakeTrail.length > tailSize) {
+          snakeTrail.shift();
+        }
+      }
+
+      // input
+      function keyDownEvent(e) {
+        switch (e.keyCode) {
+          case 37:
+            nextX = -1;
+            nextY = 0;
+            break;
+          case 38:
+            nextX = 0;
+            nextY = -1;
+            break;
+          case 39:
+            nextX = 1;
+            nextY = 0;
+            break;
+          case 40:
+            nextX = 0;
+            nextY = 1;
+            break;
+          case 32:
+            if(gameActive == true) {
+                pauseGame();
+            }
+            else {
+                gameControl = startGame(x);
+            }
+            break;
+        }
+      }
+  
