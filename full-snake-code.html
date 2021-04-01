@@ -77,6 +77,13 @@ font-size: 3.5vh;
           gameActive = false;
           document.getElementById("game-status").innerHTML = "<h3 id='game-over'>Game Over!</h3>";
           document.getElementById("game-score").innerHTML = "<h1>Score: " + x + "</h1>";
+         setTimeout(function(){   
+        status = document.getElementById("game-over");
+          if(status.innerHTML = "Game Over!"){
+         document.getElementById("game-status").innerHTML = "<h2>Reloading Snake Game...</h2>";
+         location.reload();
+}
+},2000)
       }
 
       // game world
